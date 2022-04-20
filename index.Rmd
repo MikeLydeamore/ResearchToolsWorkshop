@@ -32,7 +32,7 @@ knitr::opts_chunk$set(echo = F, fig.align="center")
 
 This is a _sample_ book written in **Markdown**. You can use anything that Pandoc's Markdown supports; for example, a math equation $a^2 + b^2 = c^2$.
 
-## Usage 
+## Today I will cover... 
 
 * RStudio and RStudio Projects
 * Avoiding dependency hell with `renv`

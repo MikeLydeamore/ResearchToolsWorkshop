@@ -1,0 +1,228 @@
+# RStudio and RStudio Projects
+
+Much of this section is taken from Nick Tierney's excellent book [R Markdown for
+Scientists](https://rmd4sci.njtierney.com/rstudio-what-and-why.html).
+
+Here, we will:
+
+  - Look at the structure of an RStudio window,
+  - Set some useful default options for RStudio,
+  - Create our first RStudio project
+
+## RStudio
+
+R is a programming language, like python, or C. One can write R code in whatever
+they feel like: Notepad, VSCode, punch card (theoretically). But, one of the
+most popular ways to write R code is using the RStudio IDE. An Integrated
+Development Environment (IDE) is just a neat program that helps you write code
+more accurately and faster. RStudio has been around for a long time, and has a
+lot of R-specific features to help you write solid R code.
+
+You should both R and RStudio installed already. If you open RStudio, you'll be
+presented with a window something like this:
+
+``` {r, fig.cap="A screenshot of the RStudio working environment. Image from https://rmd4sci.njtierney.com/rstudio-what-and-why.html."}
+image_from_url("https://rmd4sci.njtierney.com/figs/rstudio-screenshot.png")
+```
+
+Top left is the source window - this is where your scripts or markdown files
+will sit to be edited.
+
+Bottom left is the console, where your code is executed. It also has an
+integrated terminal which can be useful for running certain specific tasks.
+
+Top right is the "Viewer", which has a file browser, plot viewer, help window
+and a handful of other tabs. If you draw a plot in the console it will appear
+here for example.
+
+Bottom right is the "Environment" pane, which will list all the variables you
+have loaded currently, the history of your previous commands, and a handful of
+other things such as version control, build tools and database connections.
+
+### Exercise 2.1
+
+Open up the RStudio preferences (Tools \> Global Options), and change the layout
+of your panes! You can arrange them whatever way you like.
+
+## RStudio Default Options
+
+RStudio by default is very helpful. It will keep items in your environment if
+you quit (or crash, usually), and reload them when you re-open RStudio.
+
+However, this can be a bit of a reproducibility nightmare. So, we will turn them
+off.
+
+Go to the RStudio preferences (Tools \> Global Options), and set the following:
+
+  - Workspace:
+      - Uncheck "Restore .Rdata into workspace upon startup"
+      - Save workspace .Rdata on exit: "Never".
+  - History:
+      - Uncheck "Remove duplicate entries in history"
+
+Some people will suggest unchecking "Always save history (even when not saving
+.Rdata)", but I have found personally I rely on history a lot and so not saving
+that causes more problems than it's worth. Your mileage may vary.
+
+I'd also recommend changing the colour scheme to a less retina burning white. My
+personal favourite is Cobalt currently.
+
+## Rstudio Projects
+
+Now that we have our RStudio set up nicely, it's time to start work on our
+project!
+
+**Not so fast!**
+
+We should think about how we will arrange our files. A bit of time now will save
+us a lot of pain later. As someone who has experienced a lot of file management
+related pain, I cannot stress this enough.
+
+### Never use `setwd()`\*
+
+\*(almost never anyway)
+
+It is the least transportable way to set where R is currently looking for files.
+For example, think about this piece of code:
+
+``` {r, eval=F, echo=T}
+setwd("/Users/mlyd0001/projects/ResearchToolsWorkshop")
+read_csv("data/mtcars.csv")
+```
+
+This will set the working directory to this workshop, and then load in a CSV I
+have saved in. Works fine for me. But, what if Mitch would like to work from the
+same data I'm using? No problem he can just download my materials and run the
+script.
+
+    Error in setwd("/Users/mlyd0001/projects/ResearchToolsWorkshop") : cannot change working directory
+
+Oh. Why would that be?
+
+Well, Mitch isn't `mlyd0001`, and so that folder simply doesn't exist on their
+computer. So straight away, my collaborator will have to go and edit the script,
+which when they send it back to me, will just error on my end!
+
+Perhaps Jenny Bryan feels [a bit too
+strongly](https://www.tidyverse.org/blog/2017/12/workflow-vs-script/) about this
+concept, but:
+
+> If the first line of your R script is
+> `setwd("C:\\Users\\jenny\\path\\that\\only\\I\\have")` I will come into your
+> office and SET YOUR COMPUTER ON FIRE 🔥.
+
+And while I won't set your computer on fire, I will edit all your code to remove
+it before I send it back to you, and probably passive-aggressively mention it in
+my response.
+
+### Project structure
+
+At the end of the day, how you structure your project is up to you (except for
+`setwd()`, that isn't up to you). But, we should keep all our files organised in
+one, top-level folder.
+
+My personal structure looks something like this:
+
+    project_name
+      └── R/
+          └── various .R files, usually functions
+      └── data/
+          └── whatever data files I happen to need
+      └── outputs/
+          └── figures/
+          └── tables/
+      └── libraries.R
+      └── pipeline.R
+
+If it is, then I will break up `pipeline.R` into multiple files, to produce the
+given outputs. But it is critical that the pipeline (or it's subfiles) run from
+top to bottom *in a clean R session*.
+
+The clean R session is important, as it will ensure you're not accidentally
+relying on anything left over in your Environment (remember the option we
+changed earlier about saving the `.Rdata`?) and it means that when your
+collaborator runs the file you know it will run from the top.
+
+A handy trick to source all your functions in the pipeline is to use the
+following:
+
+``` {r, eval=F, echo=T}
+invisible(lapply(list.files("R/", pattern = "*.R", full.names = T), source))
+```
+
+Just remember to re-source if you edit and save.
+
+## Projects, with a capital P
+
+So far, we've talked about project structure in an 'informal' sense. RStudio
+takes it a step further, with a formal "Project" (the P is capitalised on
+purpose).
+
+These projects do a few things:
+
+  - Store project specific settings
+  - Project-specific .Rhistory, .Rprofile and a handful of others
+  - Add a handy little piece of text on your RStudio icon
+  - Store it's own history
+  - Set your working directory to the project-specific top level folder.
+
+They're pretty neat.
+
+They also come with their own file, ending in `.Rproj`, which you can open
+directly to open the project in RStudio instead of loading through the menu.
+
+*RStudio Projects are specific to RStudio*. If you change IDE or choose not to
+use RStudio, they will not do anything. Other IDEs do have similar concepts:
+VSCode has "workspaces", PyCharm has "ideas", but they are not cross-compatible.
+
+### Exercise 2.4
+
+Set up an RStudio Project for this workshop!
+
+Go to File \> New Project. Usually you'll be in "New directory", then New
+project.
+
+When you name a project, I think it's always worth taking a little bit of time
+to think of a nice name. For analysis projects (that aren't software release
+based), I tend to just use descriptive names, like "ResearchToolsWorkshop". Good
+names will make it easy to find your things years later.
+
+The best names apparently:
+
+  - are short
+  - do not use spaces
+  - cleverly combine words
+
+## Making sure you're in the right place
+
+While we're working in an RStudio Package, it's unlikely we'll need to change
+our working directory. But it can happen sometimes - maybe we are working on a
+remote server, or one of our "collaborators" has left in a pesky `setwd()` call
+again.
+
+We can ensure we're loading data from the right place using the handy package
+`here`.
+
+The job of `here` is simple. The function `here::here()` uses some magic^[not
+actually magic, just an algorithm and a specific set of files. See
+https://github.com/r-lib/rprojroot for more info.] to determine where our
+project root is.
+
+Here is my path:
+
+``` {r, echo=T}
+here::here()
+```
+
+And if I wanted to load some data, I could use
+
+``` {r, echo=T}
+here::here("data/people_who_have_used_setwd.csv")
+```
+
+and then no matter how many people have changed working directory on me, `here`
+will resolve back to the top-level folder.
+
+The extra nice thing about `here` is that it will work even if we're not in an
+RStudio project. The types of files it searches are more than `.Rproj` and so it
+will work in *almost* all contexts and IDEs.
