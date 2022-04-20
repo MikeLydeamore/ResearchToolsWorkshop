@@ -1,5 +1,13 @@
 # Avoiding dependency hell with `renv`
 
+Here we will:
+
+- Learn about dependency hell
+- Learn how to avoid dependency hell with `renv`
+- Set up our own isolated package environment.
+
+## What is dependency hell?
+
 Have you ever downloaded someone else's code from a long time ago, and it relies
 on packages for a version of R 12 years ago?
 

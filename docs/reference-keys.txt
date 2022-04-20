@@ -13,6 +13,12 @@ projects-with-a-capital-p
 exercise-2.4
 making-sure-youre-in-the-right-place
 avoiding-dependency-hell-with-renv
+what-is-dependency-hell
 renv-basics-and-quick-start
 what-is-a-lockfile-anyway
 practice-time
+rmarkdown-basics
+what-is-rmarkdown
+the-traditional-writing-process
+enter-rmarkdown
+exercise

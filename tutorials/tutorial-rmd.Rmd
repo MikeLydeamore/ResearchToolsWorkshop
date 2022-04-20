@@ -1,0 +1,11 @@
+---
+title: "Plotting mtcars"
+author: "Michael Lydeamore"
+output: html_document
+---
+`mtcars` is a dataset included with R, characterising the fuel efficiencies of cars with some covariates.
+
+```{r, echo=T, eval=T}
+head(mtcars)
+plot(mtcars$mpg, mtcars$cyl)
+```
