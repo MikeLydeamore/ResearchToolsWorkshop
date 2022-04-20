@@ -1,0 +1,48 @@
+--- 
+title: "Reproducibility is you(R) responsibility"
+author: "Michael Lydeamore"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+# url: your book url like https://bookdown.org/yihui/bookdown
+# cover-image: path to the social sharing image like images/cover.jpg
+description: |
+  A short workshop-like tutorial in reproducibility and why it is a problem,
+  and how to help solve it!
+link-citations: yes
+github-repo: rstudio/bookdown-demo
+---
+```{r setup, echo=F}
+image_from_url <- function(url) {
+  if (knitr::is_html_output())
+ {
+   knitr::include_graphics(url)
+ } else {
+   knitr::include_url(url)
+ }
+}
+
+knitr::opts_chunk$set(echo = F, fig.align="center")
+
+```
+
+
+# About
+
+This is a _sample_ book written in **Markdown**. You can use anything that Pandoc's Markdown supports; for example, a math equation $a^2 + b^2 = c^2$.
+
+## Usage 
+
+* RStudio and RStudio Projects
+* Avoiding dependency hell with `renv`
+* Reproducible and automatically updating workflows with `targets`
+* R markdown structure
+
+
+```{r include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```
