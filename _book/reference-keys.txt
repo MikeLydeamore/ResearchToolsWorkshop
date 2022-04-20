@@ -1,0 +1,7 @@
+fig:python-dependency-hell
+about
+usage
+rstudio-and-rstudio-projects
+avoiding-dependency-hell-with-renv
+renv-basics-and-quick-start
+what-is-a-lockfile-anyway
