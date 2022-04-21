@@ -4,12 +4,12 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Reproducibility is you(R) responsibility</title>
+  <title>Chapter 10 tar_make_future() configuration (okay to leave alone): | Reproducibility is you(R) responsibility</title>
   <meta name="description" content="<p>A short workshop-like tutorial in reproducibility and why it is a problem,
 and how to help solve it!</p>" />
   <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Reproducibility is you(R) responsibility" />
+  <meta property="og:title" content="Chapter 10 tar_make_future() configuration (okay to leave alone): | Reproducibility is you(R) responsibility" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="<p>A short workshop-like tutorial in reproducibility and why it is a problem,
@@ -17,7 +17,7 @@ and how to help solve it!</p>" />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Reproducibility is you(R) responsibility" />
+  <meta name="twitter:title" content="Chapter 10 tar_make_future() configuration (okay to leave alone): | Reproducibility is you(R) responsibility" />
   
   <meta name="twitter:description" content="<p>A short workshop-like tutorial in reproducibility and why it is a problem,
 and how to help solve it!</p>" />
@@ -33,8 +33,8 @@ and how to help solve it!</p>" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="rstudio.html"/>
+<link rel="prev" href="tar_make_clustermq-configuration-okay-to-leave-alone.html"/>
+<link rel="next" href="install-packages-future-future.callr-and-future.batchtools-to-allow-use_targets-to-configure-tar_make_future-options..html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -172,27 +172,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.3" data-path="renv.html"><a href="renv.html#what-is-a-lockfile-anyway"><i class="fa fa-check"></i><b>3.3</b> What is a lockfile, anyway?<span></span></a></li>
 <li class="chapter" data-level="3.4" data-path="renv.html"><a href="renv.html#practice-time"><i class="fa fa-check"></i><b>3.4</b> Practice time<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="targets.html"><a href="targets.html"><i class="fa fa-check"></i><b>4</b> Targets, the make-like pipeline<span></span></a>
+<li class="chapter" data-level="4" data-path="targets-the-make-like-pipeline-targets.html"><a href="targets-the-make-like-pipeline-targets.html"><i class="fa fa-check"></i><b>4</b> Targets, the make-like pipeline {#targets}<span></span></a>
 <ul>
-<li class="chapter" data-level="4.0.1" data-path="targets.html"><a href="targets.html#exercise"><i class="fa fa-check"></i><b>4.0.1</b> Exercise<span></span></a></li>
-<li class="chapter" data-level="4.1" data-path="targets.html"><a href="targets.html#enter-targets"><i class="fa fa-check"></i><b>4.1</b> Enter <code>targets</code><span></span></a></li>
-<li class="chapter" data-level="4.2" data-path="targets.html"><a href="targets.html#targets-script-file"><i class="fa fa-check"></i><b>4.2</b> Targets script file<span></span></a></li>
-<li class="chapter" data-level="4.3" data-path="targets.html"><a href="targets.html#defining-a-target"><i class="fa fa-check"></i><b>4.3</b> Defining a target<span></span></a></li>
-<li class="chapter" data-level="4.4" data-path="targets.html"><a href="targets.html#running-a-pipeline"><i class="fa fa-check"></i><b>4.4</b> Running a pipeline<span></span></a></li>
-<li class="chapter" data-level="4.5" data-path="targets.html"><a href="targets.html#working-with-a-target"><i class="fa fa-check"></i><b>4.5</b> Working with a target<span></span></a>
-<ul>
-<li class="chapter" data-level="4.5.1" data-path="targets.html"><a href="targets.html#exercise-1"><i class="fa fa-check"></i><b>4.5.1</b> Exercise<span></span></a></li>
+<li class="chapter" data-level="4.0.1" data-path="targets-the-make-like-pipeline-targets.html"><a href="targets-the-make-like-pipeline-targets.html#exercise"><i class="fa fa-check"></i><b>4.0.1</b> Exercise<span></span></a></li>
+<li class="chapter" data-level="4.1" data-path="targets-the-make-like-pipeline-targets.html"><a href="targets-the-make-like-pipeline-targets.html#enter-targets"><i class="fa fa-check"></i><b>4.1</b> Enter <code>targets</code><span></span></a></li>
+<li class="chapter" data-level="4.2" data-path="targets-the-make-like-pipeline-targets.html"><a href="targets-the-make-like-pipeline-targets.html#targets-script-file"><i class="fa fa-check"></i><b>4.2</b> Targets script file<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="4.6" data-path="targets.html"><a href="targets.html#function-oriented-programming"><i class="fa fa-check"></i><b>4.6</b> Function-oriented programming<span></span></a></li>
-<li class="chapter" data-level="4.7" data-path="targets.html"><a href="targets.html#targets-helps-you-manage-complicated-workflows"><i class="fa fa-check"></i><b>4.7</b> <code>targets</code> helps you manage complicated workflows<span></span></a></li>
-<li class="chapter" data-level="4.8" data-path="targets.html"><a href="targets.html#extra-reading"><i class="fa fa-check"></i><b>4.8</b> Extra reading<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>5</b> RMarkdown basics<span></span></a>
+<li class="chapter" data-level="5" data-path="load-packages-required-to-define-the-pipeline.html"><a href="load-packages-required-to-define-the-pipeline.html"><i class="fa fa-check"></i><b>5</b> Load packages required to define the pipeline:<span></span></a></li>
+<li class="chapter" data-level="6" data-path="librarytarchetypes-load-other-packages-as-needed.-nolint.html"><a href="librarytarchetypes-load-other-packages-as-needed.-nolint.html"><i class="fa fa-check"></i><b>6</b> library(tarchetypes) # Load other packages as needed. # nolint<span></span></a></li>
+<li class="chapter" data-level="7" data-path="set-target-options.html"><a href="set-target-options.html"><i class="fa fa-check"></i><b>7</b> Set target options:<span></span></a></li>
+<li class="chapter" data-level="8" data-path="set-other-options-as-needed..html"><a href="set-other-options-as-needed..html"><i class="fa fa-check"></i><b>8</b> Set other options as needed.<span></span></a></li>
+<li class="chapter" data-level="9" data-path="tar_make_clustermq-configuration-okay-to-leave-alone.html"><a href="tar_make_clustermq-configuration-okay-to-leave-alone.html"><i class="fa fa-check"></i><b>9</b> tar_make_clustermq() configuration (okay to leave alone):<span></span></a></li>
+<li class="chapter" data-level="10" data-path="tar_make_future-configuration-okay-to-leave-alone.html"><a href="tar_make_future-configuration-okay-to-leave-alone.html"><i class="fa fa-check"></i><b>10</b> tar_make_future() configuration (okay to leave alone):<span></span></a></li>
+<li class="chapter" data-level="11" data-path="install-packages-future-future.callr-and-future.batchtools-to-allow-use_targets-to-configure-tar_make_future-options..html"><a href="install-packages-future-future.callr-and-future.batchtools-to-allow-use_targets-to-configure-tar_make_future-options..html"><i class="fa fa-check"></i><b>11</b> Install packages {{future}}, {{future.callr}}, and {{future.batchtools}} to allow use_targets() to configure tar_make_future() options.<span></span></a></li>
+<li class="chapter" data-level="12" data-path="load-the-r-scripts-with-your-custom-functions.html"><a href="load-the-r-scripts-with-your-custom-functions.html"><i class="fa fa-check"></i><b>12</b> Load the R scripts with your custom functions:<span></span></a></li>
+<li class="chapter" data-level="13" data-path="sourceother_functions.r-source-other-scripts-as-needed.-nolint.html"><a href="sourceother_functions.r-source-other-scripts-as-needed.-nolint.html"><i class="fa fa-check"></i><b>13</b> source(“other_functions.R”) # Source other scripts as needed. # nolint<span></span></a></li>
+<li class="chapter" data-level="14" data-path="replace-the-target-list-below-with-your-own.html"><a href="replace-the-target-list-below-with-your-own.html"><i class="fa fa-check"></i><b>14</b> Replace the target list below with your own:<span></span></a></li>
+<li class="chapter" data-level="15" data-path="format-feather-efficient-storage-of-large-data-frames-nolint.html"><a href="format-feather-efficient-storage-of-large-data-frames-nolint.html"><i class="fa fa-check"></i><b>15</b> format = “feather” # efficient storage of large data frames # nolint<span></span></a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="rmarkdown.html"><a href="rmarkdown.html#what-is-rmarkdown"><i class="fa fa-check"></i><b>5.1</b> What is RMarkdown?<span></span></a></li>
-<li class="chapter" data-level="5.2" data-path="rmarkdown.html"><a href="rmarkdown.html#the-traditional-writing-process"><i class="fa fa-check"></i><b>5.2</b> The traditional writing process<span></span></a></li>
-<li class="chapter" data-level="5.3" data-path="rmarkdown.html"><a href="rmarkdown.html#enter-rmarkdown"><i class="fa fa-check"></i><b>5.3</b> Enter RMarkdown<span></span></a></li>
-<li class="chapter" data-level="5.4" data-path="rmarkdown.html"><a href="rmarkdown.html#exercise-2"><i class="fa fa-check"></i><b>5.4</b> Exercise<span></span></a></li>
+<li class="chapter" data-level="15.1" data-path="format-feather-efficient-storage-of-large-data-frames-nolint.html"><a href="format-feather-efficient-storage-of-large-data-frames-nolint.html#defining-a-target"><i class="fa fa-check"></i><b>15.1</b> Defining a target<span></span></a></li>
+<li class="chapter" data-level="15.2" data-path="format-feather-efficient-storage-of-large-data-frames-nolint.html"><a href="format-feather-efficient-storage-of-large-data-frames-nolint.html#running-a-pipeline"><i class="fa fa-check"></i><b>15.2</b> Running a pipeline<span></span></a></li>
+<li class="chapter" data-level="15.3" data-path="format-feather-efficient-storage-of-large-data-frames-nolint.html"><a href="format-feather-efficient-storage-of-large-data-frames-nolint.html#working-with-a-target"><i class="fa fa-check"></i><b>15.3</b> Working with a target<span></span></a>
+<ul>
+<li class="chapter" data-level="15.3.1" data-path="format-feather-efficient-storage-of-large-data-frames-nolint.html"><a href="format-feather-efficient-storage-of-large-data-frames-nolint.html#exercise-1"><i class="fa fa-check"></i><b>15.3.1</b> Exercise<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="format-feather-efficient-storage-of-large-data-frames-nolint.html"><a href="format-feather-efficient-storage-of-large-data-frames-nolint.html#function-oriented-programming"><i class="fa fa-check"></i><b>15.4</b> Function-oriented programming<span></span></a></li>
+<li class="chapter" data-level="15.5" data-path="format-feather-efficient-storage-of-large-data-frames-nolint.html"><a href="format-feather-efficient-storage-of-large-data-frames-nolint.html#targets-helps-you-manage-complicated-workflows"><i class="fa fa-check"></i><b>15.5</b> <code>targets</code> helps you manage complicated workflows<span></span></a></li>
+<li class="chapter" data-level="15.6" data-path="format-feather-efficient-storage-of-large-data-frames-nolint.html"><a href="format-feather-efficient-storage-of-large-data-frames-nolint.html#extra-reading"><i class="fa fa-check"></i><b>15.6</b> Extra reading<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>16</b> RMarkdown basics<span></span></a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="rmarkdown.html"><a href="rmarkdown.html#what-is-rmarkdown"><i class="fa fa-check"></i><b>16.1</b> What is RMarkdown?<span></span></a>
+<ul>
+<li class="chapter" data-level="16.1.1" data-path="rmarkdown.html"><a href="rmarkdown.html#the-traditional-writing-process"><i class="fa fa-check"></i><b>16.1.1</b> The traditional writing process<span></span></a></li>
+<li class="chapter" data-level="16.1.2" data-path="rmarkdown.html"><a href="rmarkdown.html#enter-rmarkdown"><i class="fa fa-check"></i><b>16.1.2</b> Enter RMarkdown<span></span></a></li>
+<li class="chapter" data-level="16.1.3" data-path="rmarkdown.html"><a href="rmarkdown.html#exercise-2"><i class="fa fa-check"></i><b>16.1.3</b> Exercise<span></span></a></li>
+</ul></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -214,32 +229,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Reproducibility is you(R) responsibility</h1>
-<p class="author"><em>Michael Lydeamore</em></p>
-<p class="date"><em>2022-04-21</em></p>
-</div>
-<div id="about" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">Chapter 1</span> About<a href="index.html#about" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>This is a <em>sample</em> book written in <strong>Markdown</strong>. You can use anything that Pandoc’s Markdown supports; for example, a math equation <span class="math inline">\(a^2 + b^2 = c^2\)</span>.</p>
-<div id="today-i-will-cover" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> Today I will cover…<a href="index.html#today-i-will-cover" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li>RStudio and RStudio Projects</li>
-<li>Avoiding dependency hell with <code>renv</code></li>
-<li>Reproducible and automatically updating workflows with <code>targets</code></li>
-<li>R markdown structure</li>
-</ul>
-
-</div>
+<div id="tar_make_future-configuration-okay-to-leave-alone" class="section level1 hasAnchor" number="10">
+<h1><span class="header-section-number">Chapter 10</span> tar_make_future() configuration (okay to leave alone):<a href="tar_make_future-configuration-okay-to-leave-alone.html#tar_make_future-configuration-okay-to-leave-alone" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="rstudio.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="tar_make_clustermq-configuration-okay-to-leave-alone.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="install-packages-future-future.callr-and-future.batchtools-to-allow-use_targets-to-configure-tar_make_future-options..html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -270,7 +269,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/index.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/03-targets.Rmd",
 "text": "Edit"
 },
 "history": {

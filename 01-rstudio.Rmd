@@ -1,4 +1,4 @@
-# RStudio and RStudio Projects
+# RStudio and RStudio Projects {#rstudio}
 
 Much of this section is taken from Nick Tierney's excellent book [R Markdown for
 Scientists](https://rmd4sci.njtierney.com/rstudio-what-and-why.html).

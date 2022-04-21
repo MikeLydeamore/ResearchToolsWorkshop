@@ -1,4 +1,4 @@
-# RMarkdown basics
+# RMarkdown basics {#rmarkdown}
 
 Here, we will:
 
@@ -11,7 +11,7 @@ Here, we will:
 To understand the purpose pf RMarkdown, we should first take a look at the
 "traditional" scientific writing process.
 
-### The traditional writing process
+## The traditional writing process
 
 Usually, you will load the data, write the scripts to do the analysis, save some
 figures, and get to writing. If you're a mathematician or computer scientist,
@@ -29,7 +29,7 @@ Except you forgot the figure!
 
 Sigh.
 
-### Enter RMarkdown
+## Enter RMarkdown
 
 Markdown is a basic "markup" language. You write plain text, and a compiler will
 convert it into HTML for display.
@@ -69,7 +69,7 @@ This should produce a small report that looks something like this:
 ![](figures/rmd-tutorial-report.png)
 
 
-### Exercise
+## Exercise
 
 Copy the above RMarkdown code into a blank document, and "Knit" to HTML, PDF and
 Word.

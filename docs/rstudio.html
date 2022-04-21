@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 RStudio and RStudio Projects | Reproducibility is you(R) responsibility</title>
+  <meta name="description" content="<p>A short workshop-like tutorial in reproducibility and why it is a problem,
+and how to help solve it!</p>" />
+  <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 RStudio and RStudio Projects | Reproducibility is you(R) responsibility" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>A short workshop-like tutorial in reproducibility and why it is a problem,
+and how to help solve it!</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 RStudio and RStudio Projects | Reproducibility is you(R) responsibility" />
+  
+  <meta name="twitter:description" content="<p>A short workshop-like tutorial in reproducibility and why it is a problem,
+and how to help solve it!</p>" />
+  
+
+<meta name="author" content="Michael Lydeamore" />
+
+
+<meta name="date" content="2022-04-21" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="renv.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<link href="libs/vis-9.1.0/vis-network.min.css" rel="stylesheet" />
+<script src="libs/vis-9.1.0/vis-network.min.js"></script>
+<script src="libs/visNetwork-binding-2.1.0/visNetwork.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Monash EBS Research Tools Workshop</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About<span></span></a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#today-i-will-cover"><i class="fa fa-check"></i><b>1.1</b> Today I will cover…<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="rstudio.html"><a href="rstudio.html"><i class="fa fa-check"></i><b>2</b> RStudio and RStudio Projects<span></span></a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="rstudio.html"><a href="rstudio.html#rstudio-1"><i class="fa fa-check"></i><b>2.1</b> RStudio<span></span></a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="rstudio.html"><a href="rstudio.html#exercise-2.1"><i class="fa fa-check"></i><b>2.1.1</b> Exercise 2.1<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="rstudio.html"><a href="rstudio.html#rstudio-default-options"><i class="fa fa-check"></i><b>2.2</b> RStudio Default Options<span></span></a></li>
+<li class="chapter" data-level="2.3" data-path="rstudio.html"><a href="rstudio.html#rstudio-projects"><i class="fa fa-check"></i><b>2.3</b> Rstudio Projects<span></span></a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="rstudio.html"><a href="rstudio.html#never-use-setwd"><i class="fa fa-check"></i><b>2.3.1</b> Never use <code>setwd()</code>*<span></span></a></li>
+<li class="chapter" data-level="2.3.2" data-path="rstudio.html"><a href="rstudio.html#project-structure"><i class="fa fa-check"></i><b>2.3.2</b> Project structure<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="rstudio.html"><a href="rstudio.html#projects-with-a-capital-p"><i class="fa fa-check"></i><b>2.4</b> Projects, with a capital P<span></span></a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="rstudio.html"><a href="rstudio.html#exercise-2.4"><i class="fa fa-check"></i><b>2.4.1</b> Exercise 2.4<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="rstudio.html"><a href="rstudio.html#making-sure-youre-in-the-right-place"><i class="fa fa-check"></i><b>2.5</b> Making sure you’re in the right place<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="renv.html"><a href="renv.html"><i class="fa fa-check"></i><b>3</b> Avoiding dependency hell with <code>renv</code><span></span></a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="renv.html"><a href="renv.html#what-is-dependency-hell"><i class="fa fa-check"></i><b>3.1</b> What is dependency hell?<span></span></a></li>
+<li class="chapter" data-level="3.2" data-path="renv.html"><a href="renv.html#renv-basics-and-quick-start"><i class="fa fa-check"></i><b>3.2</b> <code>renv</code> basics and quick-start<span></span></a></li>
+<li class="chapter" data-level="3.3" data-path="renv.html"><a href="renv.html#what-is-a-lockfile-anyway"><i class="fa fa-check"></i><b>3.3</b> What is a lockfile, anyway?<span></span></a></li>
+<li class="chapter" data-level="3.4" data-path="renv.html"><a href="renv.html#practice-time"><i class="fa fa-check"></i><b>3.4</b> Practice time<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="targets.html"><a href="targets.html"><i class="fa fa-check"></i><b>4</b> Targets, the make-like pipeline<span></span></a>
+<ul>
+<li class="chapter" data-level="4.0.1" data-path="targets.html"><a href="targets.html#exercise"><i class="fa fa-check"></i><b>4.0.1</b> Exercise<span></span></a></li>
+<li class="chapter" data-level="4.1" data-path="targets.html"><a href="targets.html#enter-targets"><i class="fa fa-check"></i><b>4.1</b> Enter <code>targets</code><span></span></a></li>
+<li class="chapter" data-level="4.2" data-path="targets.html"><a href="targets.html#targets-script-file"><i class="fa fa-check"></i><b>4.2</b> Targets script file<span></span></a></li>
+<li class="chapter" data-level="4.3" data-path="targets.html"><a href="targets.html#defining-a-target"><i class="fa fa-check"></i><b>4.3</b> Defining a target<span></span></a></li>
+<li class="chapter" data-level="4.4" data-path="targets.html"><a href="targets.html#running-a-pipeline"><i class="fa fa-check"></i><b>4.4</b> Running a pipeline<span></span></a></li>
+<li class="chapter" data-level="4.5" data-path="targets.html"><a href="targets.html#working-with-a-target"><i class="fa fa-check"></i><b>4.5</b> Working with a target<span></span></a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="targets.html"><a href="targets.html#exercise-1"><i class="fa fa-check"></i><b>4.5.1</b> Exercise<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="targets.html"><a href="targets.html#function-oriented-programming"><i class="fa fa-check"></i><b>4.6</b> Function-oriented programming<span></span></a></li>
+<li class="chapter" data-level="4.7" data-path="targets.html"><a href="targets.html#targets-helps-you-manage-complicated-workflows"><i class="fa fa-check"></i><b>4.7</b> <code>targets</code> helps you manage complicated workflows<span></span></a></li>
+<li class="chapter" data-level="4.8" data-path="targets.html"><a href="targets.html#extra-reading"><i class="fa fa-check"></i><b>4.8</b> Extra reading<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>5</b> RMarkdown basics<span></span></a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="rmarkdown.html"><a href="rmarkdown.html#what-is-rmarkdown"><i class="fa fa-check"></i><b>5.1</b> What is RMarkdown?<span></span></a></li>
+<li class="chapter" data-level="5.2" data-path="rmarkdown.html"><a href="rmarkdown.html#the-traditional-writing-process"><i class="fa fa-check"></i><b>5.2</b> The traditional writing process<span></span></a></li>
+<li class="chapter" data-level="5.3" data-path="rmarkdown.html"><a href="rmarkdown.html#enter-rmarkdown"><i class="fa fa-check"></i><b>5.3</b> Enter RMarkdown<span></span></a></li>
+<li class="chapter" data-level="5.4" data-path="rmarkdown.html"><a href="rmarkdown.html#exercise-2"><i class="fa fa-check"></i><b>5.4</b> Exercise<span></span></a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Reproducibility is you(R) responsibility</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="rstudio" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> RStudio and RStudio Projects<a href="rstudio.html#rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Much of this section is taken from Nick Tierney’s excellent book <a href="https://rmd4sci.njtierney.com/rstudio-what-and-why.html">R Markdown for
+Scientists</a>.</p>
+<p>Here, we will:</p>
+<ul>
+<li>Look at the structure of an RStudio window,</li>
+<li>Set some useful default options for RStudio,</li>
+<li>Create our first RStudio project</li>
+</ul>
+<div id="rstudio-1" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> RStudio<a href="rstudio.html#rstudio-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>R is a programming language, like python, or C. One can write R code in whatever
+they feel like: Notepad, VSCode, punch card (theoretically). But, one of the
+most popular ways to write R code is using the RStudio IDE. An Integrated
+Development Environment (IDE) is just a neat program that helps you write code
+more accurately and faster. RStudio has been around for a long time, and has a
+lot of R-specific features to help you write solid R code.</p>
+<p>You should both R and RStudio installed already. If you open RStudio, you’ll be
+presented with a window something like this:</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-2"></span>
+<img src="https://rmd4sci.njtierney.com/figs/rstudio-screenshot.png" alt="A screenshot of the RStudio working environment. Image from https://rmd4sci.njtierney.com/rstudio-what-and-why.html."  />
+<p class="caption">
+Figure 2.1: A screenshot of the RStudio working environment. Image from <a href="https://rmd4sci.njtierney.com/rstudio-what-and-why.html" class="uri">https://rmd4sci.njtierney.com/rstudio-what-and-why.html</a>.
+</p>
+</div>
+<p>Top left is the source window - this is where your scripts or markdown files
+will sit to be edited.</p>
+<p>Bottom left is the console, where your code is executed. It also has an
+integrated terminal which can be useful for running certain specific tasks.</p>
+<p>Top right is the “Viewer,” which has a file browser, plot viewer, help window
+and a handful of other tabs. If you draw a plot in the console it will appear
+here for example.</p>
+<p>Bottom right is the “Environment” pane, which will list all the variables you
+have loaded currently, the history of your previous commands, and a handful of
+other things such as version control, build tools and database connections.</p>
+<div id="exercise-2.1" class="section level3 hasAnchor" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> Exercise 2.1<a href="rstudio.html#exercise-2.1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Open up the RStudio preferences (Tools &gt; Global Options), and change the layout
+of your panes! You can arrange them whatever way you like.</p>
+</div>
+</div>
+<div id="rstudio-default-options" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> RStudio Default Options<a href="rstudio.html#rstudio-default-options" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>RStudio by default is very helpful. It will keep items in your environment if
+you quit (or crash, usually), and reload them when you re-open RStudio.</p>
+<p>However, this can be a bit of a reproducibility nightmare. So, we will turn them
+off.</p>
+<p>Go to the RStudio preferences (Tools &gt; Global Options), and set the following:</p>
+<ul>
+<li>Workspace:
+<ul>
+<li>Uncheck “Restore .Rdata into workspace upon startup”</li>
+<li>Save workspace .Rdata on exit: “Never.”</li>
+</ul></li>
+<li>History:
+<ul>
+<li>Uncheck “Remove duplicate entries in history”</li>
+</ul></li>
+</ul>
+<p>Some people will suggest unchecking “Always save history (even when not saving
+.Rdata),” but I have found personally I rely on history a lot and so not saving
+that causes more problems than it’s worth. Your mileage may vary.</p>
+<p>I’d also recommend changing the colour scheme to a less retina burning white. My
+personal favourite is Cobalt currently.</p>
+</div>
+<div id="rstudio-projects" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Rstudio Projects<a href="rstudio.html#rstudio-projects" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now that we have our RStudio set up nicely, it’s time to start work on our
+project!</p>
+<p><strong>Not so fast!</strong></p>
+<p>We should think about how we will arrange our files. A bit of time now will save
+us a lot of pain later. As someone who has experienced a lot of file management
+related pain, I cannot stress this enough.</p>
+<div id="never-use-setwd" class="section level3 hasAnchor" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> Never use <code>setwd()</code>*<a href="rstudio.html#never-use-setwd" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>*(almost never anyway)</p>
+<p>It is the least transportable way to set where R is currently looking for files.
+For example, think about this piece of code:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="rstudio.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;/Users/mlyd0001/projects/ResearchToolsWorkshop&quot;</span>)</span>
+<span id="cb1-2"><a href="rstudio.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">&quot;data/mtcars.csv&quot;</span>)</span></code></pre></div>
+<p>This will set the working directory to this workshop, and then load in a CSV I
+have saved in. Works fine for me. But, what if Mitch would like to work from the
+same data I’m using? No problem he can just download my materials and run the
+script.</p>
+<pre><code>Error in setwd(&quot;/Users/mlyd0001/projects/ResearchToolsWorkshop&quot;) : cannot change working directory</code></pre>
+<p>Oh. Why would that be?</p>
+<p>Well, Mitch isn’t <code>mlyd0001</code>, and so that folder simply doesn’t exist on their
+computer. So straight away, my collaborator will have to go and edit the script,
+which when they send it back to me, will just error on my end!</p>
+<p>Perhaps Jenny Bryan feels <a href="https://www.tidyverse.org/blog/2017/12/workflow-vs-script/">a bit too
+strongly</a> about this
+concept, but:</p>
+<blockquote>
+<p>If the first line of your R script is
+<code>setwd("C:\\Users\\jenny\\path\\that\\only\\I\\have")</code> I will come into your
+office and SET YOUR COMPUTER ON FIRE 🔥.</p>
+</blockquote>
+<p>And while I won’t set your computer on fire, I will edit all your code to remove
+it before I send it back to you, and probably passive-aggressively mention it in
+my response.</p>
+</div>
+<div id="project-structure" class="section level3 hasAnchor" number="2.3.2">
+<h3><span class="header-section-number">2.3.2</span> Project structure<a href="rstudio.html#project-structure" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>At the end of the day, how you structure your project is up to you (except for
+<code>setwd()</code>, that isn’t up to you). But, we should keep all our files organised in
+one, top-level folder.</p>
+<p>My personal structure looks something like this:</p>
+<pre><code>project_name
+  └── R/
+      └── various .R files, usually functions
+  └── data/
+      └── whatever data files I happen to need
+  └── outputs/
+      └── figures/
+      └── tables/
+  └── libraries.R
+  └── pipeline.R</code></pre>
+<p>If it is, then I will break up <code>pipeline.R</code> into multiple files, to produce the
+given outputs. But it is critical that the pipeline (or it’s subfiles) run from
+top to bottom <em>in a clean R session</em>.</p>
+<p>The clean R session is important, as it will ensure you’re not accidentally
+relying on anything left over in your Environment (remember the option we
+changed earlier about saving the <code>.Rdata</code>?) and it means that when your
+collaborator runs the file you know it will run from the top.</p>
+<p>A handy trick to source all your functions in the pipeline is to use the
+following:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="rstudio.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">invisible</span>(<span class="fu">lapply</span>(<span class="fu">list.files</span>(<span class="st">&quot;R/&quot;</span>, <span class="at">pattern =</span> <span class="st">&quot;*.R&quot;</span>, <span class="at">full.names =</span> T), source))</span></code></pre></div>
+<p>Just remember to re-source if you edit and save.</p>
+</div>
+</div>
+<div id="projects-with-a-capital-p" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Projects, with a capital P<a href="rstudio.html#projects-with-a-capital-p" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>So far, we’ve talked about project structure in an ‘informal’ sense. RStudio
+takes it a step further, with a formal “Project” (the P is capitalised on
+purpose).</p>
+<p>These projects do a few things:</p>
+<ul>
+<li>Store project specific settings</li>
+<li>Project-specific .Rhistory, .Rprofile and a handful of others</li>
+<li>Add a handy little piece of text on your RStudio icon</li>
+<li>Store it’s own history</li>
+<li>Set your working directory to the project-specific top level folder.</li>
+</ul>
+<p>They’re pretty neat.</p>
+<p>They also come with their own file, ending in <code>.Rproj</code>, which you can open
+directly to open the project in RStudio instead of loading through the menu.</p>
+<p><em>RStudio Projects are specific to RStudio</em>. If you change IDE or choose not to
+use RStudio, they will not do anything. Other IDEs do have similar concepts:
+VSCode has “workspaces,” PyCharm has “ideas,” but they are not cross-compatible.</p>
+<div id="exercise-2.4" class="section level3 hasAnchor" number="2.4.1">
+<h3><span class="header-section-number">2.4.1</span> Exercise 2.4<a href="rstudio.html#exercise-2.4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Set up an RStudio Project for this workshop!</p>
+<p>Go to File &gt; New Project. Usually you’ll be in “New directory,” then New
+project.</p>
+<p>When you name a project, I think it’s always worth taking a little bit of time
+to think of a nice name. For analysis projects (that aren’t software release
+based), I tend to just use descriptive names, like “ResearchToolsWorkshop.” Good
+names will make it easy to find your things years later.</p>
+<p>The best names apparently:</p>
+<ul>
+<li>are short</li>
+<li>do not use spaces</li>
+<li>cleverly combine words</li>
+</ul>
+</div>
+</div>
+<div id="making-sure-youre-in-the-right-place" class="section level2 hasAnchor" number="2.5">
+<h2><span class="header-section-number">2.5</span> Making sure you’re in the right place<a href="rstudio.html#making-sure-youre-in-the-right-place" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>While we’re working in an RStudio Package, it’s unlikely we’ll need to change
+our working directory. But it can happen sometimes - maybe we are working on a
+remote server, or one of our “collaborators” has left in a pesky <code>setwd()</code> call
+again.</p>
+<p>We can ensure we’re loading data from the right place using the handy package
+<code>here</code>.</p>
+<p>The job of <code>here</code> is simple. The function <code>here::here()</code> uses some magic<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> to determine where our
+project root is.</p>
+<p>Here is my path:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="rstudio.html#cb5-1" aria-hidden="true" tabindex="-1"></a>here<span class="sc">::</span><span class="fu">here</span>()</span></code></pre></div>
+<pre><code>## [1] &quot;/Users/mlyd0001/projects/ResearchToolsWorkshop&quot;</code></pre>
+<p>And if I wanted to load some data, I could use</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="rstudio.html#cb7-1" aria-hidden="true" tabindex="-1"></a>here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;data/people_who_have_used_setwd.csv&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;/Users/mlyd0001/projects/ResearchToolsWorkshop/data/people_who_have_used_setwd.csv&quot;</code></pre>
+<p>and then no matter how many people have changed working directory on me, <code>here</code>
+will resolve back to the top-level folder.</p>
+<p>The extra nice thing about <code>here</code> is that it will work even if we’re not in an
+RStudio project. The types of files it searches are more than <code>.Rproj</code> and so it
+will work in <em>almost</em> all contexts and IDEs.</p>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>not
+actually magic, just an algorithm and a specific set of files. See
+<a href="https://github.com/r-lib/rprojroot" class="uri">https://github.com/r-lib/rprojroot</a> for more info.<a href="rstudio.html#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="renv.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/01-rstudio.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

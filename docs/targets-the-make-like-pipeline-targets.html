@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Targets, the make-like pipeline {#targets} | Reproducibility is you(R) responsibility</title>
+  <meta name="description" content="<p>A short workshop-like tutorial in reproducibility and why it is a problem,
+and how to help solve it!</p>" />
+  <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Targets, the make-like pipeline {#targets} | Reproducibility is you(R) responsibility" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>A short workshop-like tutorial in reproducibility and why it is a problem,
+and how to help solve it!</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Targets, the make-like pipeline {#targets} | Reproducibility is you(R) responsibility" />
+  
+  <meta name="twitter:description" content="<p>A short workshop-like tutorial in reproducibility and why it is a problem,
+and how to help solve it!</p>" />
+  
+
+<meta name="author" content="Michael Lydeamore" />
+
+
+<meta name="date" content="2022-04-21" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="renv.html"/>
+<link rel="next" href="load-packages-required-to-define-the-pipeline.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<link href="libs/vis-9.1.0/vis-network.min.css" rel="stylesheet" />
+<script src="libs/vis-9.1.0/vis-network.min.js"></script>
+<script src="libs/visNetwork-binding-2.1.0/visNetwork.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Monash EBS Research Tools Workshop</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About<span></span></a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#today-i-will-cover"><i class="fa fa-check"></i><b>1.1</b> Today I will cover…<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="rstudio.html"><a href="rstudio.html"><i class="fa fa-check"></i><b>2</b> RStudio and RStudio Projects<span></span></a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="rstudio.html"><a href="rstudio.html#rstudio-1"><i class="fa fa-check"></i><b>2.1</b> RStudio<span></span></a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="rstudio.html"><a href="rstudio.html#exercise-2.1"><i class="fa fa-check"></i><b>2.1.1</b> Exercise 2.1<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="rstudio.html"><a href="rstudio.html#rstudio-default-options"><i class="fa fa-check"></i><b>2.2</b> RStudio Default Options<span></span></a></li>
+<li class="chapter" data-level="2.3" data-path="rstudio.html"><a href="rstudio.html#rstudio-projects"><i class="fa fa-check"></i><b>2.3</b> Rstudio Projects<span></span></a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="rstudio.html"><a href="rstudio.html#never-use-setwd"><i class="fa fa-check"></i><b>2.3.1</b> Never use <code>setwd()</code>*<span></span></a></li>
+<li class="chapter" data-level="2.3.2" data-path="rstudio.html"><a href="rstudio.html#project-structure"><i class="fa fa-check"></i><b>2.3.2</b> Project structure<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="rstudio.html"><a href="rstudio.html#projects-with-a-capital-p"><i class="fa fa-check"></i><b>2.4</b> Projects, with a capital P<span></span></a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="rstudio.html"><a href="rstudio.html#exercise-2.4"><i class="fa fa-check"></i><b>2.4.1</b> Exercise 2.4<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="rstudio.html"><a href="rstudio.html#making-sure-youre-in-the-right-place"><i class="fa fa-check"></i><b>2.5</b> Making sure you’re in the right place<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="renv.html"><a href="renv.html"><i class="fa fa-check"></i><b>3</b> Avoiding dependency hell with <code>renv</code><span></span></a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="renv.html"><a href="renv.html#what-is-dependency-hell"><i class="fa fa-check"></i><b>3.1</b> What is dependency hell?<span></span></a></li>
+<li class="chapter" data-level="3.2" data-path="renv.html"><a href="renv.html#renv-basics-and-quick-start"><i class="fa fa-check"></i><b>3.2</b> <code>renv</code> basics and quick-start<span></span></a></li>
+<li class="chapter" data-level="3.3" data-path="renv.html"><a href="renv.html#what-is-a-lockfile-anyway"><i class="fa fa-check"></i><b>3.3</b> What is a lockfile, anyway?<span></span></a></li>
+<li class="chapter" data-level="3.4" data-path="renv.html"><a href="renv.html#practice-time"><i class="fa fa-check"></i><b>3.4</b> Practice time<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="targets-the-make-like-pipeline-targets.html"><a href="targets-the-make-like-pipeline-targets.html"><i class="fa fa-check"></i><b>4</b> Targets, the make-like pipeline {#targets}<span></span></a>
+<ul>
+<li class="chapter" data-level="4.0.1" data-path="targets-the-make-like-pipeline-targets.html"><a href="targets-the-make-like-pipeline-targets.html#exercise"><i class="fa fa-check"></i><b>4.0.1</b> Exercise<span></span></a></li>
+<li class="chapter" data-level="4.1" data-path="targets-the-make-like-pipeline-targets.html"><a href="targets-the-make-like-pipeline-targets.html#enter-targets"><i class="fa fa-check"></i><b>4.1</b> Enter <code>targets</code><span></span></a></li>
+<li class="chapter" data-level="4.2" data-path="targets-the-make-like-pipeline-targets.html"><a href="targets-the-make-like-pipeline-targets.html#targets-script-file"><i class="fa fa-check"></i><b>4.2</b> Targets script file<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="load-packages-required-to-define-the-pipeline.html"><a href="load-packages-required-to-define-the-pipeline.html"><i class="fa fa-check"></i><b>5</b> Load packages required to define the pipeline:<span></span></a></li>
+<li class="chapter" data-level="6" data-path="librarytarchetypes-load-other-packages-as-needed.-nolint.html"><a href="librarytarchetypes-load-other-packages-as-needed.-nolint.html"><i class="fa fa-check"></i><b>6</b> library(tarchetypes) # Load other packages as needed. # nolint<span></span></a></li>
+<li class="chapter" data-level="7" data-path="set-target-options.html"><a href="set-target-options.html"><i class="fa fa-check"></i><b>7</b> Set target options:<span></span></a></li>
+<li class="chapter" data-level="8" data-path="set-other-options-as-needed..html"><a href="set-other-options-as-needed..html"><i class="fa fa-check"></i><b>8</b> Set other options as needed.<span></span></a></li>
+<li class="chapter" data-level="9" data-path="tar_make_clustermq-configuration-okay-to-leave-alone.html"><a href="tar_make_clustermq-configuration-okay-to-leave-alone.html"><i class="fa fa-check"></i><b>9</b> tar_make_clustermq() configuration (okay to leave alone):<span></span></a></li>
+<li class="chapter" data-level="10" data-path="tar_make_future-configuration-okay-to-leave-alone.html"><a href="tar_make_future-configuration-okay-to-leave-alone.html"><i class="fa fa-check"></i><b>10</b> tar_make_future() configuration (okay to leave alone):<span></span></a></li>
+<li class="chapter" data-level="11" data-path="install-packages-future-future.callr-and-future.batchtools-to-allow-use_targets-to-configure-tar_make_future-options..html"><a href="install-packages-future-future.callr-and-future.batchtools-to-allow-use_targets-to-configure-tar_make_future-options..html"><i class="fa fa-check"></i><b>11</b> Install packages {{future}}, {{future.callr}}, and {{future.batchtools}} to allow use_targets() to configure tar_make_future() options.<span></span></a></li>
+<li class="chapter" data-level="12" data-path="load-the-r-scripts-with-your-custom-functions.html"><a href="load-the-r-scripts-with-your-custom-functions.html"><i class="fa fa-check"></i><b>12</b> Load the R scripts with your custom functions:<span></span></a></li>
+<li class="chapter" data-level="13" data-path="sourceother_functions.r-source-other-scripts-as-needed.-nolint.html"><a href="sourceother_functions.r-source-other-scripts-as-needed.-nolint.html"><i class="fa fa-check"></i><b>13</b> source(“other_functions.R”) # Source other scripts as needed. # nolint<span></span></a></li>
+<li class="chapter" data-level="14" data-path="replace-the-target-list-below-with-your-own.html"><a href="replace-the-target-list-below-with-your-own.html"><i class="fa fa-check"></i><b>14</b> Replace the target list below with your own:<span></span></a></li>
+<li class="chapter" data-level="15" data-path="format-feather-efficient-storage-of-large-data-frames-nolint.html"><a href="format-feather-efficient-storage-of-large-data-frames-nolint.html"><i class="fa fa-check"></i><b>15</b> format = “feather” # efficient storage of large data frames # nolint<span></span></a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="format-feather-efficient-storage-of-large-data-frames-nolint.html"><a href="format-feather-efficient-storage-of-large-data-frames-nolint.html#defining-a-target"><i class="fa fa-check"></i><b>15.1</b> Defining a target<span></span></a></li>
+<li class="chapter" data-level="15.2" data-path="format-feather-efficient-storage-of-large-data-frames-nolint.html"><a href="format-feather-efficient-storage-of-large-data-frames-nolint.html#running-a-pipeline"><i class="fa fa-check"></i><b>15.2</b> Running a pipeline<span></span></a></li>
+<li class="chapter" data-level="15.3" data-path="format-feather-efficient-storage-of-large-data-frames-nolint.html"><a href="format-feather-efficient-storage-of-large-data-frames-nolint.html#working-with-a-target"><i class="fa fa-check"></i><b>15.3</b> Working with a target<span></span></a>
+<ul>
+<li class="chapter" data-level="15.3.1" data-path="format-feather-efficient-storage-of-large-data-frames-nolint.html"><a href="format-feather-efficient-storage-of-large-data-frames-nolint.html#exercise-1"><i class="fa fa-check"></i><b>15.3.1</b> Exercise<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="format-feather-efficient-storage-of-large-data-frames-nolint.html"><a href="format-feather-efficient-storage-of-large-data-frames-nolint.html#function-oriented-programming"><i class="fa fa-check"></i><b>15.4</b> Function-oriented programming<span></span></a></li>
+<li class="chapter" data-level="15.5" data-path="format-feather-efficient-storage-of-large-data-frames-nolint.html"><a href="format-feather-efficient-storage-of-large-data-frames-nolint.html#targets-helps-you-manage-complicated-workflows"><i class="fa fa-check"></i><b>15.5</b> <code>targets</code> helps you manage complicated workflows<span></span></a></li>
+<li class="chapter" data-level="15.6" data-path="format-feather-efficient-storage-of-large-data-frames-nolint.html"><a href="format-feather-efficient-storage-of-large-data-frames-nolint.html#extra-reading"><i class="fa fa-check"></i><b>15.6</b> Extra reading<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>16</b> RMarkdown basics<span></span></a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="rmarkdown.html"><a href="rmarkdown.html#what-is-rmarkdown"><i class="fa fa-check"></i><b>16.1</b> What is RMarkdown?<span></span></a>
+<ul>
+<li class="chapter" data-level="16.1.1" data-path="rmarkdown.html"><a href="rmarkdown.html#the-traditional-writing-process"><i class="fa fa-check"></i><b>16.1.1</b> The traditional writing process<span></span></a></li>
+<li class="chapter" data-level="16.1.2" data-path="rmarkdown.html"><a href="rmarkdown.html#enter-rmarkdown"><i class="fa fa-check"></i><b>16.1.2</b> Enter RMarkdown<span></span></a></li>
+<li class="chapter" data-level="16.1.3" data-path="rmarkdown.html"><a href="rmarkdown.html#exercise-2"><i class="fa fa-check"></i><b>16.1.3</b> Exercise<span></span></a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Reproducibility is you(R) responsibility</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="targets-the-make-like-pipeline-targets" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Targets, the make-like pipeline {#targets}<a href="targets-the-make-like-pipeline-targets.html#targets-the-make-like-pipeline-targets" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>The project structure we discussed in Chapter <a href="rstudio.html#rstudio">2</a> works fine for our
+reasonably straightforward projects that don’t have too many moving parts.</p>
+<p>Often, our analyses will take a long time to run (I’m looking at you Stan) or
+are stochastic (again, Stan), and so we don’t want to re-run them every time we
+run our pipeline script. But, we need to make sure everything is up to date if
+we change something.</p>
+<p>For example, I’ve plotted my model fit, but mislabelled my axes. I want to
+re-run the plot but not every step of my analysis. How can I make sure
+everything is up to date?</p>
+<div id="exercise" class="section level3 hasAnchor" number="4.0.1">
+<h3><span class="header-section-number">4.0.1</span> Exercise<a href="targets-the-make-like-pipeline-targets.html#exercise" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>How would you go about keeping only the relevant parts of your script up to
+date?</p>
+</div>
+<div id="enter-targets" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Enter <code>targets</code><a href="targets-the-make-like-pipeline-targets.html#enter-targets" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Targets borrows it’s workflow pattern from very old tools like <code>Make</code>, to only
+run the parts of an analysis that <em>actually</em> need updating.</p>
+<p>It uses <em>dynamic programming</em> to look at the set of outputs (known as “targets”)
+and determine if they are outdated, and thus only runs the part of the analysis
+that needs to be re-run.</p>
+<p>First, let’s install targets:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="targets-the-make-like-pipeline-targets.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;targets&quot;</span>)</span>
+<span id="cb15-2"><a href="targets-the-make-like-pipeline-targets.html#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;visNetwork&quot;</span>)</span>
+<span id="cb15-3"><a href="targets-the-make-like-pipeline-targets.html#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(targets)</span></code></pre></div>
+<p>Annoyingly, targets relies on <code>igraph</code> to do a lot of it’s graph-related work
+both to visualise the pipeline and work out what is connected to what. <code>igraph</code>
+is a very large, very heavy package so give it a few minutes to install. We also
+install <code>visNetwork</code> as that will give us some pretty visualisations shortly.</p>
+<p>Every <code>targets</code> workflow needs a special <code>_targets.R</code> file. We can create that
+by running:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="targets-the-make-like-pipeline-targets.html#cb16-1" aria-hidden="true" tabindex="-1"></a>targets<span class="sc">::</span><span class="fu">use_targets</span>()</span>
+<span id="cb16-2"><a href="targets-the-make-like-pipeline-targets.html#cb16-2" aria-hidden="true" tabindex="-1"></a>targets<span class="sc">::</span><span class="fu">tar_edit</span>()</span></code></pre></div>
+<p>and actually, we can use that second command to edit the this file from
+anywhere, so it can be useful to bind it to a key.</p>
+</div>
+<div id="targets-script-file" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Targets script file<a href="targets-the-make-like-pipeline-targets.html#targets-script-file" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>After creating, your <code>_targets.R</code> file will look something like this:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="targets-the-make-like-pipeline-targets.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Created by use_targets().</span></span>
+<span id="cb17-2"><a href="targets-the-make-like-pipeline-targets.html#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Follow the comments below to fill in this target script.</span></span>
+<span id="cb17-3"><a href="targets-the-make-like-pipeline-targets.html#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Then follow the manual to check and run the pipeline:</span></span>
+<span id="cb17-4"><a href="targets-the-make-like-pipeline-targets.html#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co">#   https://books.ropensci.org/targets/walkthrough.html#inspect-the-pipeline # nolint</span></span></code></pre></div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="renv.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="load-packages-required-to-define-the-pipeline.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/03-targets.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

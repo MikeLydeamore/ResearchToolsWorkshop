@@ -4,12 +4,12 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Reproducibility is you(R) responsibility</title>
+  <title>Chapter 5 RMarkdown basics | Reproducibility is you(R) responsibility</title>
   <meta name="description" content="<p>A short workshop-like tutorial in reproducibility and why it is a problem,
 and how to help solve it!</p>" />
   <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Reproducibility is you(R) responsibility" />
+  <meta property="og:title" content="Chapter 5 RMarkdown basics | Reproducibility is you(R) responsibility" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="<p>A short workshop-like tutorial in reproducibility and why it is a problem,
@@ -17,7 +17,7 @@ and how to help solve it!</p>" />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Reproducibility is you(R) responsibility" />
+  <meta name="twitter:title" content="Chapter 5 RMarkdown basics | Reproducibility is you(R) responsibility" />
   
   <meta name="twitter:description" content="<p>A short workshop-like tutorial in reproducibility and why it is a problem,
 and how to help solve it!</p>" />
@@ -33,8 +33,8 @@ and how to help solve it!</p>" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
+<link rel="prev" href="targets.html"/>
 
-<link rel="next" href="rstudio.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -214,32 +214,92 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Reproducibility is you(R) responsibility</h1>
-<p class="author"><em>Michael Lydeamore</em></p>
-<p class="date"><em>2022-04-21</em></p>
-</div>
-<div id="about" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">Chapter 1</span> About<a href="index.html#about" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>This is a <em>sample</em> book written in <strong>Markdown</strong>. You can use anything that Pandoc’s Markdown supports; for example, a math equation <span class="math inline">\(a^2 + b^2 = c^2\)</span>.</p>
-<div id="today-i-will-cover" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> Today I will cover…<a href="index.html#today-i-will-cover" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="rmarkdown" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Chapter 5</span> RMarkdown basics<a href="rmarkdown.html#rmarkdown" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Here, we will:</p>
 <ul>
-<li>RStudio and RStudio Projects</li>
-<li>Avoiding dependency hell with <code>renv</code></li>
-<li>Reproducible and automatically updating workflows with <code>targets</code></li>
-<li>R markdown structure</li>
+<li>Learn what an RMarkdown document is</li>
+<li>Write some markdown and combine it with R code</li>
+<li>Compile to HTML, PDF and Word</li>
 </ul>
+<div id="what-is-rmarkdown" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> What is RMarkdown?<a href="rmarkdown.html#what-is-rmarkdown" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>To understand the purpose pf RMarkdown, we should first take a look at the
+“traditional” scientific writing process.</p>
+</div>
+<div id="the-traditional-writing-process" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> The traditional writing process<a href="rmarkdown.html#the-traditional-writing-process" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Usually, you will load the data, write the scripts to do the analysis, save some
+figures, and get to writing. If you’re a mathematician or computer scientist,
+you’ll write in LaTeX, if you’re not you’ll probably use Word.</p>
+<p>When you write out your tables, if you’re like me, you’ll painstakingly
+copy/paste numbers from the console into the document, and hope you get the row
+right.</p>
+<p>Then, when your work is done, and the reviews come back, they’ve asked you to
+add a term to the model. No problem, you say. You add your model term, update
+the tables, resubmit, ba da bing, ba da boom.</p>
+<p>Except you forgot the figure!</p>
+<p>Sigh.</p>
+</div>
+<div id="enter-rmarkdown" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Enter RMarkdown<a href="rmarkdown.html#enter-rmarkdown" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Markdown is a basic “markup” language. You write plain text, and a compiler will
+convert it into HTML for display.</p>
+<p>RMarkdown combines R with markdown, and allows you to embed code into your
+writing. It’s the future!</p>
+<p>Now, you can write your paper and include the code to make the figures or the
+models, and then when Reviewer 2 comes and asks for an extra term, nothing will
+be forgotten.</p>
+<p>RMarkdown could be considered <em>literate programming</em>. That is, the combination
+of literature and programming, a concept first introduced by <a href="https://en.wikipedia.org/wiki/Donald_Knuth">Donald
+Knuth</a>.</p>
+<p>RMarkdown documents can be compiled into HTML, PDF or Word documents. I
+recommend working with HTML for now, spending time messing about with Word and
+PDF formatting tends to be wasted time unless the document is almost final.</p>
+<p>We’ll spend a lot more time today about RMarkdown, but for now, let’s compile a
+little document of our own.</p>
+<pre><code>---
+title: &quot;Plotting mtcars&quot;
+author: &quot;Michael Lydeamore&quot;
+output: html_document
+---
+`mtcars` is a dataset included with R, characterising the fuel efficiencies of cars with some covariates.
+
+
+```r
+head(mtcars)
+plot(mtcars$mpg, mtcars$cyl)
+```</code></pre>
+<p>This should produce a small report that looks something like this:
+<img src="figures/rmd-tutorial-report.png" /></p>
+</div>
+<div id="exercise-2" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> Exercise<a href="rmarkdown.html#exercise-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Copy the above RMarkdown code into a blank document, and “Knit” to HTML, PDF and
+Word.</p>
+<p>If you get an error compiling to PDF, you might have to install the <code>tinytex</code>
+package.</p>
 
 </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
             </section>
 
           </div>
         </div>
       </div>
+<a href="targets.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
-<a href="rstudio.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -270,7 +330,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/index.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/04-rmarkdown.Rmd",
 "text": "Edit"
 },
 "history": {
