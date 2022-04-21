@@ -24,13 +24,34 @@ image_from_url <- function(url) {
 }
 
 knitr::opts_chunk$set(echo = F, fig.align="center")
+library(targets)
 
 ```
 
 
-# About
+# Reproducibility and your research
 
-This is a _sample_ book written in **Markdown**. You can use anything that Pandoc's Markdown supports; for example, a math equation $a^2 + b^2 = c^2$.
+Reproducibility is one of the cornerstones of science. It was first introduced to me in high school: "Write down your methods in a way someone else could repeat them and get the same answer". Yet, there is an enormous amount of science that doesn't follow that principle. 
+
+Reproducibility of science is a real problem. Estimates have put the cost in biomedicine alone at more than $28 billion annually^[https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1002165]. It's not just the financial cost either. Many funding agencies have periods of time in which research must be able to be reproduced.
+
+It's not just that methods aren't fully explained, but implementations are often not shared, or if they are, they don't match what is published.
+
+I have suffered this myself. Recently, a curious student emailed me about model code from my PhD. Written in MATLAB, a language I haven't touched in 6 years, it took me many hours of debugging to get it to run on a modern system. Even then, I doubt I would've been able to produce everything in the associated paper without hours of painful work.
+
+### Discussion
+Break out into groups of 2 or 3 and discuss issues and solutions you have seen or used for reproducible research.
+
+## There isn't a silver bullet
+Unfortunately, there isn't really a silver bullet to the reproducibility problem. Some people are very good at maintaining strict systems for projects. Some people are less so.
+
+Today, we will learn a bit about reproduciblity, and how we can start to build it into our research so we can at least make _some_ progress on what is a big problem.
+
+## There is more to it than today...
+We are really just dipping our toe into the water of reproducibility. There is more to consider: Docker, continuous integration, containerisation/virtualisation, and if we want to go even deeper, different computer architectures, long-term data storage and redundancy.
+
+You could spend an entire career on this (and people do). But for today, let's cover reproducible writing and function-oriented coding, as well as version control, so we can all get a bit better with our research tools.
+
 
 ## Today I will cover... 
 

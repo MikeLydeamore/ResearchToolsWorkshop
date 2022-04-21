@@ -143,9 +143,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Monash EBS Research Tools Workshop</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About<span></span></a>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Reproducibility and your research<span></span></a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#today-i-will-cover"><i class="fa fa-check"></i><b>1.1</b> Today I will cover…<span></span></a></li>
+<li class="chapter" data-level="1.0.1" data-path="index.html"><a href="index.html#discussion"><i class="fa fa-check"></i><b>1.0.1</b> Discussion<span></span></a></li>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#there-isnt-a-silver-bullet"><i class="fa fa-check"></i><b>1.1</b> There isn’t a silver bullet<span></span></a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#there-is-more-to-it-than-today"><i class="fa fa-check"></i><b>1.2</b> There is more to it than today…<span></span></a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#today-i-will-cover"><i class="fa fa-check"></i><b>1.3</b> Today I will cover…<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="rstudio.html"><a href="rstudio.html"><i class="fa fa-check"></i><b>2</b> RStudio and RStudio Projects<span></span></a>
 <ul>
@@ -389,7 +392,7 @@ remote server, or one of our “collaborators” has left in a pesky <code>setwd
 again.</p>
 <p>We can ensure we’re loading data from the right place using the handy package
 <code>here</code>.</p>
-<p>The job of <code>here</code> is simple. The function <code>here::here()</code> uses some magic<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> to determine where our
+<p>The job of <code>here</code> is simple. The function <code>here::here()</code> uses some magic<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> to determine where our
 project root is.</p>
 <p>Here is my path:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="rstudio.html#cb5-1" aria-hidden="true" tabindex="-1"></a>here<span class="sc">::</span><span class="fu">here</span>()</span></code></pre></div>
@@ -407,10 +410,10 @@ will work in <em>almost</em> all contexts and IDEs.</p>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="1">
-<li id="fn1"><p>not
+<ol start="2">
+<li id="fn2"><p>not
 actually magic, just an algorithm and a specific set of files. See
-<a href="https://github.com/r-lib/rprojroot" class="uri">https://github.com/r-lib/rprojroot</a> for more info.<a href="rstudio.html#fnref1" class="footnote-back">↩︎</a></p></li>
+<a href="https://github.com/r-lib/rprojroot" class="uri">https://github.com/r-lib/rprojroot</a> for more info.<a href="rstudio.html#fnref2" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
@@ -473,20 +476,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>

@@ -1,13 +1,12 @@
-Welcome! 
+This repository contains all the resources used for Session 1 of the Monash EBS
+Research Tools workshop.
 
-This is a minimal example of a book based on R Markdown and **bookdown** (https://github.com/rstudio/bookdown). 
+The material is divided into four chapters:
 
-This template provides a skeleton file structure that you can edit to create your book. 
+1.  RStudio
+2.  renv
+3.  targets
+4.  RMarkdown
 
-The contents inside the .Rmd files provide some pointers to help you get started, but feel free to also delete the content in each file and start fresh.
-
-Additional resources:
-
-The **bookdown** book: https://bookdown.org/yihui/bookdown/
-
-The **bookdown** package reference site: https://pkgs.rstudio.com/bookdown
+There is also a short introduction on reproducibility and it's importance in
+scientific research.

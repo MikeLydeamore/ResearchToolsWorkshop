@@ -1,6 +1,9 @@
 fig:unnamed-chunk-2
 fig:python-dependency-hell
-about
+reproducibility-and-your-research
+discussion
+there-isnt-a-silver-bullet
+there-is-more-to-it-than-today
 today-i-will-cover
 rstudio
 rstudio-1

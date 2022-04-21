@@ -143,9 +143,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Monash EBS Research Tools Workshop</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About<span></span></a>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Reproducibility and your research<span></span></a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#today-i-will-cover"><i class="fa fa-check"></i><b>1.1</b> Today I will cover…<span></span></a></li>
+<li class="chapter" data-level="1.0.1" data-path="index.html"><a href="index.html#discussion"><i class="fa fa-check"></i><b>1.0.1</b> Discussion<span></span></a></li>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#there-isnt-a-silver-bullet"><i class="fa fa-check"></i><b>1.1</b> There isn’t a silver bullet<span></span></a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#there-is-more-to-it-than-today"><i class="fa fa-check"></i><b>1.2</b> There is more to it than today…<span></span></a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#today-i-will-cover"><i class="fa fa-check"></i><b>1.3</b> Today I will cover…<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="rstudio.html"><a href="rstudio.html"><i class="fa fa-check"></i><b>2</b> RStudio and RStudio Projects<span></span></a>
 <ul>
@@ -219,11 +222,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p class="author"><em>Michael Lydeamore</em></p>
 <p class="date"><em>2022-04-21</em></p>
 </div>
-<div id="about" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">Chapter 1</span> About<a href="index.html#about" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>This is a <em>sample</em> book written in <strong>Markdown</strong>. You can use anything that Pandoc’s Markdown supports; for example, a math equation <span class="math inline">\(a^2 + b^2 = c^2\)</span>.</p>
-<div id="today-i-will-cover" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> Today I will cover…<a href="index.html#today-i-will-cover" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="reproducibility-and-your-research" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Chapter 1</span> Reproducibility and your research<a href="index.html#reproducibility-and-your-research" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Reproducibility is one of the cornerstones of science. It was first introduced to me in high school: “Write down your methods in a way someone else could repeat them and get the same answer.” Yet, there is an enormous amount of science that doesn’t follow that principle.</p>
+<p>Reproducibility of science is a real problem. Estimates have put the cost in biomedicine alone at more than $28 billion annually<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. It’s not just the financial cost either. Many funding agencies have periods of time in which research must be able to be reproduced.</p>
+<p>It’s not just that methods aren’t fully explained, but implementations are often not shared, or if they are, they don’t match what is published.</p>
+<p>I have suffered this myself. Recently, a curious student emailed me about model code from my PhD. Written in MATLAB, a language I haven’t touched in 6 years, it took me many hours of debugging to get it to run on a modern system. Even then, I doubt I would’ve been able to produce everything in the associated paper without hours of painful work.</p>
+<div id="discussion" class="section level3 hasAnchor" number="1.0.1">
+<h3><span class="header-section-number">1.0.1</span> Discussion<a href="index.html#discussion" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Break out into groups of 2 or 3 and discuss issues and solutions you have seen or used for reproducible research.</p>
+</div>
+<div id="there-isnt-a-silver-bullet" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> There isn’t a silver bullet<a href="index.html#there-isnt-a-silver-bullet" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Unfortunately, there isn’t really a silver bullet to the reproducibility problem. Some people are very good at maintaining strict systems for projects. Some people are less so.</p>
+<p>Today, we will learn a bit about reproduciblity, and how we can start to build it into our research so we can at least make <em>some</em> progress on what is a big problem.</p>
+</div>
+<div id="there-is-more-to-it-than-today" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> There is more to it than today…<a href="index.html#there-is-more-to-it-than-today" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We are really just dipping our toe into the water of reproducibility. There is more to consider: Docker, continuous integration, containerisation/virtualisation, and if we want to go even deeper, different computer architectures, long-term data storage and redundancy.</p>
+<p>You could spend an entire career on this (and people do). But for today, let’s cover reproducible writing and function-oriented coding, as well as version control, so we can all get a bit better with our research tools.</p>
+</div>
+<div id="today-i-will-cover" class="section level2 hasAnchor" number="1.3">
+<h2><span class="header-section-number">1.3</span> Today I will cover…<a href="index.html#today-i-will-cover" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li>RStudio and RStudio Projects</li>
 <li>Avoiding dependency hell with <code>renv</code></li>
@@ -232,6 +252,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 
 </div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p><a href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1002165" class="uri">https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1002165</a><a href="index.html#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
             </section>
 
@@ -293,20 +319,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>
